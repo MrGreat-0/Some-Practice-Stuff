@@ -1,0 +1,302 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    font-family: gilroy;
+    font-weight: 100;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.cursor {
+    height: 20px;
+    width: 20px;
+    background-color: mediumturquoise;
+    border-radius: 100%;
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    -webkit-transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    -o-transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+main {
+    height: auto;
+    height: 100vh;
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    -ms-scroll-snap-type: y proximity;
+        scroll-snap-type: y proximity;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.page1,
+.page2,
+.page3,
+.page4 {
+    scroll-snap-align: start;
+}
+
+.page1 {
+    height: auto;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    background-color: cornflowerblue;
+}
+
+.card {
+    height: 60%;
+    width: 20%;
+    border: 1px #fff solid;
+    border-radius: 1vw;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 1.5%;
+    text-align: center;
+    position: relative;
+}
+
+.card img {
+    height: 50%;
+    width: 100%;
+    display: block;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+    border-radius: 1vw;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.card h1 {
+    margin: 10% 0;
+}
+
+.card h3 {
+    margin: 10% 0;
+    color: crimson;
+}
+
+#btn-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    position: relative;
+}
+
+#btn-container button {
+    border: none;
+    background-color: cadetblue;
+    padding: 0.7vw 1vw;
+    border-radius: 4px;
+    color: #fff;
+    margin-left: 10px;
+}
+
+/* #btn-container #remove{
+    background-color: #dadada;
+    color: #000;
+} */
+
+.card i {
+    font-size: 5vw;
+    color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) scale(0);
+        -ms-transform: translate(-50%, -50%) scale(0);
+            transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    -webkit-transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    -o-transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+}
+
+.page2 {
+    height: auto;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.page2 .elem {
+    height: 7vw;
+    width: 100%;
+    border-bottom: 1px solid #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    position: relative;
+}
+
+.elem h1 {
+    position: relative;
+    z-index: 1;
+    mix-blend-mode: difference;
+}
+
+.elem img {
+    height: 180px;
+    width: 180px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 0;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    -webkit-transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    -o-transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    pointer-events: none;
+}
+
+.page3 {
+    height: auto;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+}
+
+.insta {
+    height: 75vh;
+    width: 20vw;
+    border: 1px #fff solid;
+    border-radius: 1vw;
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.stories {
+    height: 13vh;
+    width: 100%;
+    border-bottom: 1px solid #dadada;
+    padding: 1.5vh;
+    white-space: nowrap;
+    overflow: auto hidden;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.story {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 3px #dc2743 solid;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.story img {
+    height: 100%;
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+}
+
+.full-scr {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: none;
+    background-position: center;
+    background-size: cover;
+    /* background-color: #e6683c; */
+}
+
+.page4 {
+    height: auto;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    background-color: #000;
+}
+
+.rect {
+    height: 300px;
+    width: 30px;
+    background: #d1d1d1;
+    -webkit-transform-origin: center;
+        -ms-transform-origin: center;
+            transform-origin: center;
+    position: relative;
+    z-index: 999;
+    border-radius: 50%;
+}
+
+.rect2 {
+    height: 300px;
+    width: 30px;
+    background: #d1d1d1;
+    -webkit-transform-origin: center;
+        -ms-transform-origin: center;
+            transform-origin: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    z-index: 99;
+    border-radius: 50%;
+}

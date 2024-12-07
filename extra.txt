@@ -1,0 +1,287 @@
+Dump some code....
+
+let iStatus = document.querySelector(".card h3");
+let btn = document.querySelector("#btn-container #add");
+
+let heart = document.querySelector(".card i");
+
+let body = document.querySelector("body");
+let cursor = document.querySelector(".cursor");
+
+let card = document.querySelector(".card");
+
+let elem = document.querySelectorAll(".elem");
+
+
+let flag = 0;
+btn.addEventListener("click", function () {
+
+    if (flag == 0) {
+        iStatus.innerHTML = "lol...";
+        iStatus.style.color = "green";
+        btn.innerHTML = "Remove";
+        btn.style.backgroundColor = "#dadada";
+        btn.style.color = "#000";
+        flag = 1;
+    } else {
+        iStatus.innerHTML = "Blah...blah...";
+        iStatus.style.color = "red";
+        btn.innerHTML = "Add Friend";
+        btn.style.backgroundColor = "cadetblue";
+        btn.style.color = "#fff";
+        flag = 0;
+    }
+
+});
+
+
+card.addEventListener("dblclick", function () {
+
+    heart.style.opacity = 0.8;
+    heart.style.transform = "translate(-50%,-50%) scale(1)";
+
+    setTimeout(function () {
+        heart.style.opacity = 0;
+    }, 700);
+
+    setTimeout(function () {
+        heart.style.transform = "translate(-50%,-50%) scale(0)";
+    }, 701);
+
+});
+
+body.addEventListener("mousemove", function (move) {
+    cursor.style.left = move.x + "px";
+    cursor.style.top = move.y + "px";
+    // cursor.style.transform = `translate(${dets.clientX}px, ${dets.clientY}px) scale(1, 1)`;
+});
+
+
+elem.forEach(function (val) {
+
+    val.addEventListener("mouseenter", function () {
+        val.childNodes[3].style.opacity = 1;
+    });
+
+    val.addEventListener("mouseleave", function () {
+        val.childNodes[3].style.opacity = 0;
+    });
+
+    val.addEventListener("mousemove", function (move) {
+        val.childNodes[3].style.left = move.x + "px";
+        val.childNodes[3].style.top = move.y + "px";
+    });
+
+}); 
+
+
+//////////////////
+
+document.querySelectorAll('.elem').forEach((elem) => {
+    const img = elem.querySelector('img');
+
+    elem.addEventListener('mousemove', (event) => {
+        const rect = elem.getBoundingClientRect();
+        const offsetX = event.clientX - rect.left;
+        const offsetY = event.clientY - rect.top;
+
+        // Optional: Center the image relative to the cursor
+        img.style.left = `${offsetX}px`;
+        img.style.top = `${offsetY}px`;
+    });
+
+    elem.addEventListener('mouseleave', () => {
+        img.style.left = '50%';
+        img.style.top = '50%';
+        img.style.transform = 'translate(-50%, -50%)'; // Reset position when cursor leaves
+    });
+});
+
+////////////////////////////////
+
+document.querySelectorAll('.elem').forEach((elem) => {
+    const img = elem.querySelector('img');
+
+    elem.addEventListener('mouseenter', () => {
+        img.style.opacity = 1;
+    });
+
+    elem.addEventListener('mouseleave', () => {
+        img.style.opacity = 0;
+        img.style.left = '50%'; // Reset to center
+        img.style.top = '50%';  // Reset to center
+    });
+
+    elem.addEventListener('mousemove', (event) => {
+        const rect = elem.getBoundingClientRect();
+        
+        // Calculate the cursor's position relative to the parent element
+        const offsetX = event.clientX - rect.left;
+        const offsetY = event.clientY - rect.top;
+
+        // Apply the offset to the image, adjusting for the image's dimensions
+        img.style.left = `${offsetX}px`;
+        img.style.top = `${offsetY}px`;
+    });
+});
+
+/////////////////////////////////////////////////////////////////////
+
+    stories.addEventListener('click', (dets) => {
+        fullScr.style.display = "block";
+        fullScr.style.backgroundImage = `url(${data[dets.target.id].story})`;
+        // console.log(data[dets.target.id].story)
+
+        setTimeout(() => {
+            fullScr.style.display = "none";
+        }, 1000);
+    });
+
+
+///////////////////////////////////////////
+
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    const formData = new FormData(this); // Create FormData object
+    fetch('/submit-form', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => console.log('Form submitted successfully:', data))
+    .catch(error => console.error('Error:', error));
+});
+
+document.getElementById('parent').addEventListener('click', function () {
+    console.log('Parent clicked during capturing');
+}, { capture: true });
+
+document.getElementById('child').addEventListener('click', function () {
+    console.log('Child clicked during capturing');
+});
+document.getElementById('parent').addEventListener('click', function(event) {
+    if (event.target && event.target.matches('button')) {
+        console.log('Button inside parent was clicked');
+    }
+});
+
+////////////////////////
+function multiply(a, b, callback) {
+    const result = a * b;
+    callback(result); // Call the callback with the result
+}
+
+multiply(5, 3, (lol) => {
+    console.log(`The result is ${lol}`); // The result is 15
+});
+//////////////////
+function greet(name) {
+    console.log(`Hello, ${name}!`);
+}
+
+function processUser(name, callback) {
+    console.log('Processing user...');
+    callback(name); // Call the callback function
+}
+/////////////////
+processUser('Alice', greet); // 'Processing user...' then 'Hello, Alice!'
+///////////////////////
+function readFile(filePath, callback) {
+    // Simulating reading a file
+    setTimeout(() => {
+        const error = null; // or an error object if something goes wrong
+        const data = 'File content here';
+        callback(error, data); // Pass error and data to the callback
+    }, 1000);
+}
+
+readFile('/path/to/file', (error, data) => {
+    if (error) {
+        console.error('Error reading file:', error);
+        return;
+    }else{
+        console.log('File content:', data);
+    }
+    
+});
+////////////////////////
+const fs = require('fs');
+
+function readFile(filePath, callback) {
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            return callback(err, null); // Pass the error to the callback
+        }
+        callback(null, data); // Pass the data to the callback
+    });
+}
+
+readFile('/path/to/file', (error, data) => {
+    if (error) {
+        console.error('Error reading file:', error.message);
+        return;
+    }
+    console.log('File content:', data);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+did you know cynthia ugwu portfolio website ?
+
+i trying replicate cursor follower there some problem i want to fix can you help me ?
+the problem is when i click image and and move the cursor follower stuck .
+i want to stay default drag image behavior and when i drag image cursor follower must follow .
+
+html -
+
+    <div class="cursor"></div>
+
+css -
+
+.cursor {
+    height: 20px;
+    width: 20px;
+    background-color: mediumturquoise;
+    border-radius: 100%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+}
+
+js-
+
+let cursor = document.querySelector(".cursor");
+function cursorMoving() {
+
+    body.addEventListener("mouseleave", function (event) {
+        cursor.style.opacity = 0;
+    });
+
+    body.addEventListener("mouseenter", function (event) {
+        cursor.style.opacity = 1;
+    });
+
+    body.addEventListener("mousemove", function (event) {
+        cursor.style.left = event.pageX + "px";
+        cursor.style.top = event.pageY + "px";
+    });
+
+};
+cursorMoving();
+
+
